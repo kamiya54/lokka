@@ -5,6 +5,7 @@ require 'erb'
 require 'ostruct'
 require 'digest/sha1'
 require 'csv'
+require 'newrelic_rpm'
 
 module Lokka
   class NoTemplateError < StandardError; end

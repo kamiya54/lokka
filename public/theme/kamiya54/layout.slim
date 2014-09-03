@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    link[href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"]
+    link[href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"]
+    link[href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css']
+    = tag "link", rel: "shortcut icon", href: "#{@theme.path}/favicon.ico"
+    = stylesheet_link_tag @theme.path + '/stylesheet'
+    meta[name="description" content="#{@site.meta_description}"]
+    meta[name="keywords" content="#{@site.meta_keywords}"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    = tag "meta", property: "og:image", content: "#{@theme.path}/thumb.jpg"
+    meta[property="og:url" content="http://www.kamiya54.info/"]
+    meta[property="og:site_name" content="#{@site.title}"]
+    - if entry?
+      meta[property="og:title" content="#{@entry.title} | #{@site.title}"]
+      meta[property="og:type" content="article"]
+      title
+        = @entry.title
+        |  - 
+        = @site.title
+    - else
+      meta[property="og:title" content="#{@site.title}"]
+      meta[property="og:type" content="blog"]
+      title
+        = @site.title
+    = header
+  body
+    #header
+      .container
+        .row
+          .col-xs-12
+            h2.text-right[style='margin-top:10px;']
+              a[href='https://www.facebook.com/yusuke.kamiya.90' target='_blank' style='margin-right:10px;']
+                i[class='fa fa-facebook-square']
+              a[href='https://github.com/kamiya54' target='_blank' style='margin-right:10px;']
+                i[class='fa fa-github']
+              a[href='https://twitter.com/yuskamiya' target='_blank' style='margin-right:10px;']
+                i[class='fa fa-twitter']
+              a[href='http://instagram.com/yuskamiya' target='_blank' style='margin-right:10px;']
+                i[class='fa fa-instagram']
+        .row
+          .col-xs-12
+            h1#site_title[style='margin:0px 0px 10px 0px']
+              = link_to @site.title, url("/")
+            p = @site.description
+    #content
+      .container
+        .row
+          .col-sm-9.col-xs-12
+            == bread_crumb
+            #posts
+              == yield
+          .col-sm-3.col-xs-12
+            == partial "side"
+    #footer.text-center
+      |  Copyright© 
+      = @site.title
+      |  All Rights Reserved　-　Powered by 
+      = link_to "Lokka", "http://lokka.org/", :id => "lokka_link"
+    script[src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"]
+    script[src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"]
+    = javascript_include_tag @theme.path + '/javascript'

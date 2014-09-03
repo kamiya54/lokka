@@ -1,0 +1,16 @@
+div class='panel panel-default'
+  .panel-body
+    h4.entry_title[style='margin-top:10px;']
+      = link_to entry.title, url(entry.link)
+    p.text-muted
+      = strip_tags(entry.body).first(160) + '...'
+    == entry.tags_to_html
+    p.text-muted
+      - unless entry.comments.size == 0
+        span[style='margin-right:10px;']
+          = link_to "#{t('comments')}(#{entry.comments.size})", url("#{entry.link}#comment_wrapper")
+      span
+        = entry.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[entry.created_at.wday]})")
+      - if logged_in?
+        span
+          = link_to t('edit'), url(entry.edit_link)

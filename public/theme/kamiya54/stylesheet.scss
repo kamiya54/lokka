@@ -1,0 +1,56 @@
+h1{
+  margin:50px 0px 20px 0px;
+}
+h2{
+  margin:45px 0px 15px 0px;
+}
+h3{
+  margin:40px 0px 15px 0px;
+}
+h4{
+  margin:35px 0px 12px 0px;
+  font-weight:bold;
+}
+h5{
+  margin:30px 0px 12px 0px;
+  font-weight:bold;
+}
+
+body {
+  line-height: 1.7;
+}
+#content{
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  padding-top: 20px;
+  background-image:url("image/crossword.png");
+}
+
+#header{
+  width:100%;
+  background-image:url("image/wood_pattern.png");
+  a{
+    color: #333;
+    font-family: 'Quicksand', sans-serif;
+  }
+  a:hover{
+    color: #e74c3c;
+  }
+}
+
+#footer{
+  padding:20px 0px;
+  background-color: #333;
+  color: #fff;
+}
+
+.panel-footer{
+  span{
+    margin-right: 15px;
+  }
+}
+
+.side_block_wrapper{
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: dotted #ccc 1px;
+}

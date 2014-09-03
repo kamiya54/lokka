@@ -1,0 +1,63 @@
+#profile.side_block_wrapper
+  h4
+    i class='fa fa-user'
+    | &nbsp;
+    = t('profile')
+  div class='row text-center'
+    = image_tag gravatar_image_url('kamiya54@gmail.com'), :class => 'img-circle'
+  div class='row text-center'
+    h4
+      | kamiya54
+#recent_entry.side_block_wrapper
+  h4
+    i class='fa fa-pencil'
+    | &nbsp;
+    = t('recent_entries')
+  ul
+    - Post.recent.each do |post|
+      li
+        span
+          = link_to post.title, url(post.link)
+#recent_comment.side_block_wrapper
+  h4
+    i class='fa fa-comments'
+    | &nbsp;
+    = t('recent_comments')
+  ul
+    - Comment.recent.each do |comment|
+      li
+        span
+          = link_to truncate(strip_tags(comment.body), :length => 16), url(comment.link)
+#recent_tag.side_block_wrapper
+  h4
+    i class='fa fa-tag'
+    | &nbsp;
+    = t('tags')
+  ul
+    - Tag.all.each do |tag|
+      li
+        span
+          = link_to tag.name, url(tag.link)
+#archives.side_block_wrapper
+  h4
+    i class='fa fa-archive'
+    | &nbsp;
+    = t('archives')
+  ul
+    - months.each do |m|
+      li
+        span
+          = link_to "#{m.year}年#{m.month}月", url("/#{m.year}/#{m.month}/")
+#search.side_block_wrapper
+  h4
+    i class='fa fa-search'
+    | &nbsp;
+    = t('search')
+  .side_cont_body
+    |  <form action="
+    = url('/search/')
+    | " method="get" id=""> 
+    input.search_field[type="text" name="query"]
+.side_block_wrapper
+  script[type="text/javascript" src="http://widget.booklog.jp/blogparts/js/booklog_minishelf.js?metal" id="booklog_minishelf"]
+  script[type="text/javascript" src="http://api.booklog.jp/json/yusukekamiya?category=0&count=25&callback=booklog_minishelf"]

@@ -1,0 +1,20 @@
+== partial "article", :locals => {:entry => @entry}
+#comment_wrapper
+div class='panel panel-default'
+  .panel-body
+    - if @entry.comments.size > 0
+      h4
+        = t('comments')
+      #comments
+        - @entry.comments.reverse.each do |comment|
+          div class='panel panel-default'
+            .panel-body
+              = hbr comment.body
+            .panel-footer
+              span.name
+                = link_to comment.name, comment.homepage, :unless => comment.homepage.blank?
+              span.date
+                = l(comment.created_at)
+div class='panel panel-default'
+  .panel-body
+    == comment_form
