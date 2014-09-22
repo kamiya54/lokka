@@ -18,26 +18,38 @@
       li
         span
           = link_to post.title, url(post.link)
-#recent_comment.side_block_wrapper
+/!
+  #recent_comment.side_block_wrapper
+    h4
+      i class='fa fa-comments'
+      | &nbsp;
+      = t('recent_comments')
+    ul
+      - Comment.recent.each do |comment|
+        li
+          span
+            = link_to truncate(strip_tags(comment.body), :length => 16), url(comment.link)
+#recent_category.side_block_wrapper
   h4
-    i class='fa fa-comments'
+    i class='fa fa-list-alt'
     | &nbsp;
-    = t('recent_comments')
+    = t('categories')
   ul
-    - Comment.recent.each do |comment|
+    - Category.all.each do |category|
       li
         span
-          = link_to truncate(strip_tags(comment.body), :length => 16), url(comment.link)
-#recent_tag.side_block_wrapper
-  h4
-    i class='fa fa-tag'
-    | &nbsp;
-    = t('tags')
-  ul
-    - Tag.all.each do |tag|
-      li
-        span
-          = link_to tag.name, url(tag.link)
+          = link_to category.title, url(category.link)
+/!
+  #recent_tag.side_block_wrapper
+    h4
+      i class='fa fa-tag'
+      | &nbsp;
+      = t('tags')
+    ul
+      - Tag.all.each do |tag|
+        li
+          span
+            = link_to tag.name, url(tag.link)
 #archives.side_block_wrapper
   h4
     i class='fa fa-archive'
