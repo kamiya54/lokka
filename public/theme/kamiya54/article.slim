@@ -6,9 +6,12 @@ div class='panel panel-default'
       = entry.title
     == entry.body
     == entry.tags_to_html
-  .panel-footer
-    span
+  div class='panel-footer clearfix'
+    div[style='float:left; margin-right:20px;']
       = entry.created_at.strftime("%Y/%m/%d")
+    div[style='float:left;']
+      a[href="https://twitter.com/share" class="twitter-share-button" data-lang="ja"]
+        | ツイート
     - if logged_in?
-      span
+      div[style='float:left;']
         = link_to t('edit'), url(entry.edit_link)
